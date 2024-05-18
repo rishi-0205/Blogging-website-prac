@@ -23,6 +23,7 @@ export default function SignIn() {
       const res = await fetch("http://localhost:3000/api/auth/signin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "include",
         body: JSON.stringify(formData),
       });
       const data = await res.json();
@@ -57,20 +58,22 @@ export default function SignIn() {
         <div className="flex-1">
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
             <div className="">
-              <Label value="Your Email" />
+              <Label value="Your Email" htmlFor="email" />
               <TextInput
                 type="email"
                 placeholder="name@company.com"
                 id="email"
+                autoComplete="email"
                 onChange={handleChange}
               />
             </div>
             <div className="">
-              <Label value="Your Password" />
+              <Label value="Your Password" htmlFor="password" />
               <TextInput
                 type="password"
                 placeholder="********"
                 id="password"
+                autoComplete="current-password"
                 onChange={handleChange}
               />
             </div>

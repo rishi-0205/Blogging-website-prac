@@ -18,7 +18,13 @@ mongoose
   });
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173", // React app's origin
+    credentials: true,
+  })
+);
+
 app.use(cookieParser());
 
 app.use(express.json());
@@ -26,7 +32,6 @@ app.use(express.json());
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
-
 app.use("/api/user", userRoutes);
 
 app.use("/api/auth", authRoutes);

@@ -25,6 +25,7 @@ export default function Header() {
         <TextInput
           type="text"
           placeholder="Search..."
+          id="search"
           rightIcon={AiOutlineSearch}
           className="hidden lg:inline"
         />
@@ -45,9 +46,7 @@ export default function Header() {
           <Dropdown
             arrowIcon={false}
             inline
-            label={
-              <Avatar alt="user" img={currentUser.profilePicture} rounded />
-            }
+            label={<Avatar alt="user" img="#" rounded />}
           >
             <Dropdown.Header>
               <span className="block text-sm">@{currentUser.username}</span>
@@ -81,3 +80,5 @@ export default function Header() {
     </Navbar>
   );
 }
+
+//{currentUser.profilePicture}
