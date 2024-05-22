@@ -40,8 +40,8 @@ export const getPosts = async (req, res, next) => {
       ...(req.query.postId && { _id: req.query.postId }),
       ...(req.query.searchTerm && {
         $or: [
-          { title: { $regex: req.query.searchTerm, $option: "i" } },
-          { content: { $regex: req.query.searchTerm, $option: "i" } },
+          { title: { $regex: req.query.searchTerm, $options: "i" } },
+          { content: { $regex: req.query.searchTerm, $options: "i" } },
         ],
       }),
     })
@@ -52,15 +52,15 @@ export const getPosts = async (req, res, next) => {
     const now = new Date();
     const oneMonthAgo = new Date(
       now.getFullYear(),
-      now.getMonth - 1,
+      now.getMonth() - 1,
       now.getDate()
     );
+
     const lastMonthPosts = await Post.countDocuments({
       createdAt: { $gte: oneMonthAgo },
     });
-
     res.status(200).json({
-      post,
+      posts,
       totalPosts,
       lastMonthPosts,
     });
